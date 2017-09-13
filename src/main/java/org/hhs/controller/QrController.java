@@ -42,6 +42,7 @@ public class QrController {
             if(qrCodeInfoList.size()%10 != 0){
                 generatorImage.generatorOne(qrCodeInfoList.subList(mod*10, 10*mod+left), "erweima" + mod+".jpg");
             }
+            logger.info("图片生成完毕");
         }
     }
 

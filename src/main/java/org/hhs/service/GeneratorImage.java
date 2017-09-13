@@ -7,6 +7,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import org.hhs.domain.QrCodeInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -25,6 +27,7 @@ import java.util.Map;
  */
 @Service
 public class GeneratorImage {
+    private Logger logger = LoggerFactory.getLogger(GeneratorImage.class);
     private static final int QRCOLOR = 0xFF000000;   //默认是黑色
     private static final int BGWHITE = 0xFFFFFFFF;   //背景颜色
     private static File fileRoot = new File("image");
@@ -213,6 +216,7 @@ public class GeneratorImage {
         }
         try {
             ImageIO.write(resultImage, "png", file);
+            logger.info("生成图片---"+file.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
